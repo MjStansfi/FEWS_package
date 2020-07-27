@@ -4,8 +4,15 @@
 \alias{FEWS}
 \title{Fixed effects with window splice}
 \usage{
-FEWS(times, logprice, id, window_length, weight = NULL,
-  splice_pos = "mean", num_cores = NULL)
+FEWS(
+  times,
+  logprice,
+  id,
+  window_length,
+  weight = NULL,
+  splice_pos = "geomean",
+  num_cores = NULL
+)
 }
 \arguments{
 \item{times}{vector of the times at which price observations were made. \cr
@@ -20,22 +27,22 @@ regressions are fit on}
 
 \item{weight}{vector of expenditure weights used in the regressions}
 
-\item{splice_pos}{The positon on which to splice the windows together.
+\item{splice_pos}{The position on which to splice the windows together.
 This can be a number from 1 to window_length or any of
-c("window", "half","movement", "mean").}
+c("window", "half","movement", "geomean").}
 
-\item{num_cores}{Number of cores to use for parrallell computaion.
+\item{num_cores}{Number of cores to use for parallel computation.
 Convention is parallel::detectCores()-1 on local machines}
 }
 \value{
-The function retuns a list of 2 items:
+The function returns a list of 3 items:
     \describe{
         \item{\strong{fews}}{a dataframe of the FEWS index}
         \item{\strong{fixed_effects}}{a dataframe of the unspliced coefficients
         of the fixed effects model. The number of rows in the data frame is
         \code{window_length} * the number of windows in the data}
          \item{\strong{diagnostics}}{a dataframe of diagnostic results
-         produced during model calcaulation. The diagnostics dataframe has the
+         produced during model calculation. The diagnostics dataframe has the
          following columns:}
          \describe{
               \item{\strong{contrib_rids_pc}}{the \% of ids which exist in
@@ -70,11 +77,11 @@ Takes a time series of prices and id's and returns an index using the FEWS
 }
 \details{
 The function takes vectors for each of the inputs. It is important to note
-that the \code{times} argument muct be of numeric or Date class. This is because
+that the \code{times} argument must be of numeric or Date class. This is because
 the order of the dates matters. \cr \cr
-The function also has the cabpabililty to run in parallell, using the
-\code{num_cores} argument. Note that for smaller datasets using non-parallell
-code is often faster than using parralellisation due to the overhead
+The function also has the capability to run in parallel, using the
+\code{num_cores} argument. Note that for smaller datasets using non-parallel
+code is often faster than using parallelisation due to the overhead
 associated with dividing the job across multiple processors.
 }
 \examples{
@@ -83,7 +90,7 @@ logprice = log(turvey$price),
 id = turvey$commodity,
 window_length = 5,
 weight = turvey$price * turvey$quantity,
-splice_pos = "mean",
+splice_pos = "geomean",
 num_cores = NULL)
 
 FEWS(times = turvey$month,
@@ -91,7 +98,7 @@ logprice = log(turvey$price),
 id = turvey$commodity,
 window_length = 5,
 weight = turvey$price * turvey$quantity,
-splice_pos = "mean",
+splice_pos = "geomean",
 num_cores = 2)
 
 }

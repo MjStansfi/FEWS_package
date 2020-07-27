@@ -3,14 +3,16 @@
 \docType{data}
 \name{turvey}
 \alias{turvey}
-\title{Artifical prices of seasonal products Data created by R. Turvey}
-\format{data frame with 176 rows and 4 variables
+\title{Artificial prices of seasonal products Data created by R. Turvey}
+\format{
+data frame with 176 rows and 4 variables
 \describe{
   \item{month}{The time as a Date type}
   \item{commodity}{The seasonal product, as a factor
   (Apples, Grapes, Oranges, Peaches, Strawberries)}
   \item{price}{The price as numeric}
-  \item{quantity}{The quantity of items sold in that month as an integar}}}
+  \item{quantity}{The quantity of items sold in that month as an integar}}
+}
 \source{
 \url{https://www.ilo.org/wcmsp5/groups/public/---dgreports/---stat/documents/presentation/wcms_331153.pdf}
 }

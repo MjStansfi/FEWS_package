@@ -1,4 +1,6 @@
 FE_model <- function(st_date, dframe, window_length ) {
+
+
   # Run linear regression on every window and extract the coefficients
   # for the time values only
   # Arguments:
@@ -268,7 +270,7 @@ splice_update <- function (win_old, win_new, splice_pos){
   Pw1_new <- win_new[w + 1]
   Pw_old  <- win_old[w]
 
-  if (splice_pos == "mean") {
+  if (splice_pos == "geomean") {
     t_accum = c()
     for (t in seq(from = 2, to = w - 1, by = 1)) {
       Pt1_new <- win_new[t + 1]
@@ -280,7 +282,7 @@ splice_update <- function (win_old, win_new, splice_pos){
   }else if (splice_pos == "movement") {
     update_factor <- (Pw1_new/Pw_new)
 
-  } else if(splice_pos == "geomean"){
+  } else if(splice_pos == "geomean_short"){
     t_accum <- c() # Accumulator for the t loop
     for (t in seq(from = 2, to = w-1, by = 1)) {
       Pt_new <- win_new[t]

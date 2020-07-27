@@ -21,7 +21,7 @@
 #' @param weight vector of expenditure weights used in the regressions
 #' @param splice_pos The position on which to splice the windows together.
 #' This can be a number from 1 to window_length or any of
-#' c("window", "half","movement", "mean").
+#' c("window", "half","movement", "geomean").
 #' @param num_cores Number of cores to use for parallel computation.
 #' Convention is parallel::detectCores()-1 on local machines
 #' @return The function returns a list of 3 items:
@@ -64,7 +64,7 @@
 #' id = turvey$commodity,
 #' window_length = 5,
 #' weight = turvey$price * turvey$quantity,
-#' splice_pos = "mean",
+#' splice_pos = "geomean",
 #' num_cores = NULL)
 #'
 #' FEWS(times = turvey$month,
@@ -72,7 +72,7 @@
 #' id = turvey$commodity,
 #' window_length = 5,
 #' weight = turvey$price * turvey$quantity,
-#' splice_pos = "mean",
+#' splice_pos = "geomean",
 #' num_cores = 2)
 #'
 #' @export
@@ -82,7 +82,7 @@
 #' @importFrom stats median quantile relevel
 #' @importFrom utils head setTxtProgressBar tail txtProgressBar
 FEWS <-  function(times, logprice, id, window_length, weight = NULL,
-                  splice_pos = "mean", num_cores = NULL) {
+                  splice_pos = "geomean", num_cores = NULL) {
 
 
   timer <- Sys.time() # Get the current time
