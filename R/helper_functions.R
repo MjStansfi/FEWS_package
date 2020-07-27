@@ -39,7 +39,7 @@ check_inputs <- function (times = times, logprice = logprice, id = id,
   }
 
 
-  splice_pos_all <- c("window", "half", "movement", "mean", "geomean")
+  splice_pos_all <- c("window", "half", "movement", "geomean_short", "geomean")
   if (!( is.numeric(splice_pos) | is.integer(splice_pos))) {
     # splice_pos not a number
     # convert to lower case, to help user error

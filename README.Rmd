@@ -54,7 +54,7 @@ ggplot(turvey, aes(x = month, y = price)) +
 
 ```
 
-The FEWS is calculated below with a mean splice and a window length of 13 months.
+The FEWS is calculated below with a geometric mean splice and a window length of 13 months.
 
 ```{r fews_calculation, results='hide'}
 turvey_FEWS <- FEWS(times = turvey$month,
@@ -62,7 +62,7 @@ turvey_FEWS <- FEWS(times = turvey$month,
                     id = turvey$commodity,
                     window_length = 13,
                     weight = turvey$price * turvey$quantity,
-                    splice_pos = "mean",
+                    splice_pos = "geomean",
                     num_cores = NULL)
 
 ```
