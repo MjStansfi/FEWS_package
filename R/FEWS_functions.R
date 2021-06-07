@@ -272,7 +272,7 @@ splice_update <- function (win_old, win_new, splice_pos){
 
   if (splice_pos == "geomean") {
     t_accum = c()
-    for (t in seq(from = 2, to = w - 1, by = 1)) {
+    for (t in seq(from = 1, to = w - 1, by = 1)) {
       Pt1_new <- win_new[t + 1]
       Pt1_old <- win_old[t + 1]
       t_accum <- c(t_accum, ((Pw1_new / Pt1_new) / (Pw_old / Pt1_old)))
@@ -284,7 +284,7 @@ splice_update <- function (win_old, win_new, splice_pos){
 
   } else if(splice_pos == "geomean_short"){
     t_accum <- c() # Accumulator for the t loop
-    for (t in seq(from = 2, to = w-1, by = 1)) {
+    for (t in seq(from = 1, to = w-1, by = 1)) {
       Pt_new <- win_new[t]
       Pt_old <- win_old[t]
 
